@@ -198,9 +198,9 @@ MonoBehaviour:
   footsteps: {fileID: 0}
   footstepsSFX: {fileID: 0}
   sheathe: {fileID: 0}
-  sheatheSFX: {fileID: 0}
+  sheatheSFX: {fileID: 8300000, guid: 8ee6e15bd45944645a5a150bcfd82846, type: 3}
   unsheathe: {fileID: 0}
-  unsheatheSFX: {fileID: 0}
+  unsheatheSFX: {fileID: 8300000, guid: 96add39d922711f48af1dc5f3eed8cdf, type: 3}
   FlipDust: {fileID: 0}
   unitName: 
   unitLevel: 0

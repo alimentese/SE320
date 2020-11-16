@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footsteps: {fileID: 0}
-  footstepsSFX: {fileID: 0}
+  footstepsSFX: {fileID: 8300000, guid: f9ff9bf0c4d04d446ac8bd2747a40ce6, type: 3}
   sheathe: {fileID: 0}
   sheatheSFX: {fileID: 8300000, guid: 8ee6e15bd45944645a5a150bcfd82846, type: 3}
   unsheathe: {fileID: 0}

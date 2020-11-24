@@ -7,53 +7,43 @@ using UnityEngine.UI;
 
 public class LoadingScreen : MonoBehaviour
 {
-
-    [SerializeField] private Image progressBar;
+    AsyncOperation operation;
     public static string scene;
-    private float _progress = 0f;
+    [SerializeField] private Image progressBar;
+    [SerializeField] private Text loadingbartext;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(LoadAsyncOperation());
         StartCoroutine(LoadAsync(scene));
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+        if(progressBar.fillAmount == 1f && Input.GetMouseButtonDown(0)) {
+            operation.allowSceneActivation = true;         
+        }
     }
 
     public void whichSceneWillLoad(string sceneName) {
         scene = sceneName;
     }
 
-    IEnumerator LoadAsyncOperation() {
-        yield return new WaitForSeconds(1);
-        AsyncOperation gameLevel = SceneManager.LoadSceneAsync(scene);
-        while(gameLevel.progress < 1) {
-            progressBar.fillAmount = gameLevel.progress;
-            Debug.Log(progressBar.fillAmount);
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
     IEnumerator LoadAsync(string sceneName) {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-
+        operation = SceneManager.LoadSceneAsync(sceneName);       
         operation.allowSceneActivation = false;
-
         while (progressBar.fillAmount < 1f) {
             progressBar.fillAmount = Mathf.Clamp01(operation.progress / 0.9f);
 
-            Debug.Log("Loading... " + (int)(progressBar.fillAmount * 100f) + "%");
-
-            yield return null;
+            //Debug.Log("Loading... " + (int)(progressBar.fillAmount * 100f) + "%");
+            //Debug.Log("yüzde: " + operation.progress);
+            loadingbartext.text = "Loading... " + (int)(progressBar.fillAmount * 100f) + "%";
+            Debug.Log(loadingbartext.text);
+            if (progressBar.fillAmount == 1f) {
+                loadingbartext.text = "Click here to continue...";
+            }
         }
-
-        operation.allowSceneActivation = true;
-    }
-
-
+        yield return new WaitForEndOfFrame();
+    }  
 }

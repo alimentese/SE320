@@ -3,22 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - coin
-  - SwordAttackRange
-  - enemy
-  - turn
-  - ItemAmount
-  - stage2
-  - spike
-  - maxSTR
-  - maxDEX
-  - maxSTA
-  - maxINT
-  - maxAGI
-  - maxHP
-  - platform
-  - InventorySlot
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -28,10 +13,10 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
-  - Player
-  - Enemy
-  - Background
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -55,25 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: UI Background
-    uniqueID: 2039582591
-    locked: 0
-  - name: UI Foreground
-    uniqueID: 3024039355
-    locked: 0
-  - name: Background
-    uniqueID: 2991355997
-    locked: 0
-  - name: Platforms
-    uniqueID: 2364184333
-    locked: 0
-  - name: Enemy
-    uniqueID: 1907345455
-    locked: 0
-  - name: Player
-    uniqueID: 3728649313
-    locked: 0
-  - name: Foreground
-    uniqueID: 2788765973
     locked: 0

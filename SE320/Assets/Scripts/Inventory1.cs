@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory1 : MonoBehaviour
 {
-
+   
     private List<Item> itemList;
     private Inventory inventory;
 
@@ -28,7 +28,7 @@ public class Inventory : MonoBehaviour
 
     private Item itemscript;
 
-    public Inventory() {
+    public Inventory1() {
         itemList = new List<Item>();
     }
 
@@ -42,8 +42,8 @@ public class Inventory : MonoBehaviour
 
     public void RemoveItem(string name) {
         for (int i = 0; i < itemList.Count; i++) {
-            if (itemList[i].itemName == name) {
-                itemList.RemoveAt(i);
+            if(itemList[i].itemName == name) {
+                itemList.RemoveAt(i);             
             }
         }
     }
@@ -57,7 +57,7 @@ public class Inventory : MonoBehaviour
     }
 
     public void printList() {
-        for (int i = 0; i < itemList.Count; i++) {
+        for(int i = 0; i < itemList.Count; i++) {
             Debug.Log(itemList[i]);
         }
     }
@@ -65,18 +65,81 @@ public class Inventory : MonoBehaviour
 
     public void searchItem(string name) {
         for (int i = 0; i < itemList.Count; i++) {
-            if (itemList[i].itemName == name) {
+            if(itemList[i].itemName == name) {
                 Debug.Log("Item found at " + i + ".slot.");
             }
         }
 
     }
 
-    public void PrintItemCount() {
-        Debug.Log("toplam item: " + itemList.Count);
+    public void RefreshInventory() {
+        Debug.Log("inventory calisiyor");
+        //inventory.CountItems();
+        foreach (Item itemInventory in inventory.GetItemList()) {
+            if (slot1.transform.childCount == 0) {
+                Vector3 newPosition = new Vector3(3, -3, 0);
+                newItem = Instantiate(itemPrefabb);
+                newItem.GetComponent<Item>().itemType = itemInventory.itemType;
+                newItem.GetComponent<Item>().itemAmountt = itemInventory.itemAmountt;
+                newItem.GetComponent<Item>().itemName = itemInventory.itemName;
+
+
+                newItem.transform.parent = slot1.transform;
+                newItem.transform.localPosition = newPosition;
+                Debug.Log("slot 1");
+
+            } 
+         
+
+            else if (slot2.transform.childCount == 0) {
+                Vector3 newPosition = new Vector3(3, -3, 0);
+                newItem = Instantiate(itemPrefabb);
+                newItem.GetComponent<Item>().itemType = itemInventory.itemType;
+                newItem.GetComponent<Item>().itemAmountt = itemInventory.itemAmountt;
+                newItem.GetComponent<Item>().itemName = itemInventory.itemName;
+
+
+                newItem.transform.parent = slot2.transform;
+                newItem.transform.localPosition = newPosition;
+                Debug.Log("slot 2");
+            }
+            else if (slot3.transform.childCount == 0) {
+                Vector3 newPosition = new Vector3(3, -3, 0);
+                newItem = Instantiate(itemPrefabb);
+                newItem.GetComponent<Item>().itemType = itemInventory.itemType;
+                newItem.GetComponent<Item>().itemAmountt = itemInventory.itemAmountt;
+                newItem.GetComponent<Item>().itemName = itemInventory.itemName;
+
+                newItem.transform.parent = slot3.transform;
+                newItem.transform.localPosition = newPosition;
+                Debug.Log("slot 3");
+            }
+            else if (slot4.transform.childCount == 0) {
+                Vector3 newPosition = new Vector3(3, -3, 0);
+                newItem = Instantiate(itemPrefabb);
+                newItem.GetComponent<Item>().itemType = itemInventory.itemType;
+                newItem.GetComponent<Item>().itemAmountt = itemInventory.itemAmountt;
+                newItem.GetComponent<Item>().itemName = itemInventory.itemName;
+
+
+
+                newItem.transform.parent = slot4.transform;
+                newItem.transform.localPosition = newPosition;
+                Debug.Log("slot 4");
+            }
+            else {
+                Debug.Log("inventory full");
+            }
+
+        }
+
+
+        
     }
 
-    public void RefreshInventory() {
+
+    /*
+     public void RefreshInventory() {
         Debug.Log("inventory calisiyor");
         inventory.CountItems();
         foreach (Item itemInventory in inventory.GetItemList()) {
@@ -139,7 +202,7 @@ public class Inventory : MonoBehaviour
 
        
     }
-     
+     */
 
 
     private void Awake() {
@@ -154,11 +217,11 @@ public class Inventory : MonoBehaviour
 
         inventory.printList();
         Debug.Log("-----------");
-        // inventory.searchItem("sta");
-        // inventory.RemoveItem("sta");
+       // inventory.searchItem("sta");
+       // inventory.RemoveItem("sta");
 
-
-
+        
+        
         //CountItems();
         /* inventory.AddItem(new Item {
              itemType = Item.ItemType.HealthPotion,
@@ -170,9 +233,10 @@ public class Inventory : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void Update() {
+    public void Update()
+    {
 
-
+        
         //Debug.Log("amount tesT: " + slot2.transform.GetComponentInChildren<Item>().itemAmountt);
 
     }

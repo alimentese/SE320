@@ -15,7 +15,7 @@ public class UI : MonoBehaviour
     {
         resolutions = Screen.resolutions;
 
-        resolutionDropdown.ClearOptions();
+        //resolutionDropdown.ClearOptions();
 
         List<string> options = new List<string>();
 
@@ -25,7 +25,7 @@ public class UI : MonoBehaviour
 
         }
 
-        resolutionDropdown.AddOptions(options);
+        //resolutionDropdown.AddOptions(options);
     }
 
     // Update is called once per frame

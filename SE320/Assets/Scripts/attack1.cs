@@ -26,23 +26,22 @@ public class attack1 : MonoBehaviour
         }
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision) {
-
-
-        if (collision.gameObject.CompareTag("enemy")) {
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "enemy") {
             Attack1(collision.gameObject);        
         }
 
-    }*/
+    }
 
-    private void OnTriggerEnter2D(Collider2D collision) {
+    /*private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("enemy")) {
             Attack1(collision.gameObject);
         }
-    }
+    }*/
     private void Attack1(GameObject enemy) {
         SwingSound.Play();
         enemy.GetComponent<Enemy>().health -= 25;
+        enemy.GetComponent<Rigidbody2D>().AddForce(new Vector2(5, 5));
 
     }
 }

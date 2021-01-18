@@ -11,6 +11,9 @@ public class PlayerResource : MonoBehaviour
     private GameObject player;
     PlayerScript playerscript;
 
+    private void Awake() {
+       //DontDestroyOnLoad(gameObject);
+    }
     // Start is called before the first frame update
     void Start()
     {

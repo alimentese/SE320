@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
@@ -12,6 +13,11 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private AudioSource unsheathe;
     [SerializeField] private AudioClip unsheatheSFX;
 
+
+    [SerializeField] private GameObject slot1;
+    [SerializeField] private GameObject slot2;
+    [SerializeField] private GameObject slot3;
+
     [SerializeField] ParticleSystem FlipDust;
 
 
@@ -22,13 +28,7 @@ public class PlayerScript : MonoBehaviour
 
     public int damage;
 
-    public int maxHP;
-    public int maxSTA;
-    public int maxMAG;
-    public int maxSTR;
-    public int maxDEX;
-    public int maxAGI;
-    public int maxINT;
+    public int maxHP, maxSTA, maxMAG, maxSTR, maxDEX, maxAGI, maxINT;
 
     public float hpRegen = 5.0f;
     public float staRegen = 7.5f;
@@ -85,12 +85,24 @@ public class PlayerScript : MonoBehaviour
     public float time = 0f;
     private float lastTapTime = 0;
 
+    [SerializeField] GameObject UI;
     [SerializeField] Inventory UIinventory;
+    [SerializeField] Equipment UIEquipment;
+    public Inventory playerInventory;
+    public Equipment playerEquipment;
     [SerializeField] float runSpeed = 5f;
     [SerializeField] float jumpSpeed = 5f;
     [SerializeField] GameObject Attack1Collider;
     [SerializeField] Vector2 deathKick = new Vector2(250f,250f);
     float rotateTime = 0.5f;
+
+
+
+
+    //public PlayerInventory inventory;
+
+    public InventoryUI inventoryUI;
+
 
 
     public GameObject[] platforms;
@@ -104,6 +116,7 @@ public class PlayerScript : MonoBehaviour
     bool isSwordDrawed = false;
     bool isGrounded = true;
     bool isAttacking = false;
+    bool isUIOn = false;
 
     bool canRun = true;
     bool canAttack = true;
@@ -117,28 +130,32 @@ public class PlayerScript : MonoBehaviour
     Animator myAnimator;
     CircleCollider2D playerHeadCollider;
     BoxCollider2D swordCollider;
-    private Inventory playerInventory;
+    
 
     public void Awake() {
+
+        //DontDestroyOnLoad(gameObject);
+        //playerInventory = new Inventory();
+        //UIinventory.setInventory(playerInventory);
+
+        playerEquipment = new Equipment();
+        UIEquipment.setEquipment(playerEquipment);
+
         playerInventory = new Inventory();
-        UIinventory.setInventory(playerInventory);
+
+        
+
     }
 
+
     // Start is called before the first frame update, initialization, message then methods
-    void Start()
-    {
-        //playerInventory.AddItem(new Item(1));
-
-        //playerInventory.AddItem(new Item(0));
-
-        
+    void Start()   {
 
 
-       
 
 
-        
-        playerInventory.CountItems();
+
+        playerInventory.PrintItemCount();
         footsteps = gameObject.AddComponent<AudioSource>();
         unsheathe = gameObject.AddComponent<AudioSource>();
         sheathe = gameObject.AddComponent<AudioSource>();
@@ -158,17 +175,30 @@ public class PlayerScript : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         swordCollider = GetComponentInChildren<BoxCollider2D>();
         myAnimator.SetBool("SheatheSword", true);
-
-
-
-
     }
 
-    // Update is called once per frame 
-    void Update()
-    {
 
-        playerInventory.CountItems();
+    public void deneme () {
+        playerInventory.AddItem(new Item {
+            itemType = Item.ItemType.sword,
+            itemName = "Sword",
+            itemAmountt = 1,
+            itemSTR = 10,
+        });
+    }
+    // Update is called once per frame 
+    void Update() {
+
+        Debug.Log("ui control: " + isUIOn);
+        playerInventory.PrintItemCount();
+        playerEquipment.CountItems();
+
+        for (int i = 0; i < playerEquipment.GetItemList().Count; i++) {
+            if (playerEquipment.GetItemList()[i].itemName == "sword") {
+                Debug.Log("sword equipmentda bulundu");
+            }
+        }
+
         time = Time.time;
         platforms = GameObject.FindGameObjectsWithTag("platform");
         foreach(GameObject platforms in platforms) {
@@ -176,24 +206,36 @@ public class PlayerScript : MonoBehaviour
         }
         if (isAlive == false) { return; } else
         {
+            UIControl();
             Die();
-            Run();
-            Crouch();
             Sustain();
-            Jump();
-            Falling();       
-            if (!isSliding) {
-                Sliding();
+            if (!isUIOn) {
+                Crouch();
+                Jump();
+                Falling();
+                if (!isSliding) {
+                    Sliding();
+                }
+                FlipSprite();
+                DrawSword();
+                Run();
+                Attack1();
             }
-            FlipSprite();
-            DrawSword();
-
-            Attack1();
+            
         }
         
 
     }
 
+    private void UIControl() {
+        if(Input.GetKeyDown("i") && !isUIOn) {
+            UI.SetActive(true);
+            isUIOn = true;
+        } else if (Input.GetKeyDown("i") && isUIOn || Input.GetKeyDown("escape") && isUIOn) {
+            UI.SetActive(false);
+            isUIOn = false;
+        }
+    }
     private void canAttackTrue() {
         canAttack = true;
     }
@@ -262,13 +304,27 @@ public class PlayerScript : MonoBehaviour
         yield return new WaitForSeconds(2f);
     }
 
+    public void checkRotate() {
+        float controlThrow = Input.GetAxisRaw("Horizontal");
+
+        if (controlThrow == -1) {
+            gameObject.transform.localScale = new Vector2(-1, 1);
+            Debug.Log("SOLA DONDU");
+        }
+        if (controlThrow == 1) {
+            gameObject.transform.localScale = new Vector2(1, 1);
+            Debug.Log("SAGA DONDU");
+        }
+    }
+
+
     private void Attack1() {       
         if (Input.GetButtonDown("Fire1") && canAttack && myRigidbody.velocity.x == 0) {
             if (currentSTA > 15) {
-                currentSTA -= 15;
-                
+                currentSTA -= 15;               
                 if ((time - lastTapTime) > tapSpeed) {
                     Debug.Log("birinci attack1");
+                    
                     myAnimator.SetTrigger("Attack1");
                     lastTapTime = Time.time;
                     //yield WaitForSeconds(myAnimator["clip"].length* animation["clip"].speed);
@@ -276,6 +332,7 @@ public class PlayerScript : MonoBehaviour
                 }
                 else if ((time - lastTapTime) < tapSpeed) {
                     Debug.Log("ikinci attack1");
+                    
                     myAnimator.SetTrigger("Attack2");
                     lastTapTime = 0;
                 }
@@ -362,9 +419,8 @@ public class PlayerScript : MonoBehaviour
     }
 
     IEnumerator stopSlide() {
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(0.35f);
         myAnimator.SetBool("Sliding", false);
-        myAnimator.SetBool("Running", false);
         myAnimator.SetBool("Crouch", false);
         Debug.Log("kayma durduruluyor");
         //myAnimator.Play("adventurer_idle");
@@ -409,10 +465,9 @@ public class PlayerScript : MonoBehaviour
     
 
     private void Crouch() {
-        if (!myAnimator.GetBool("Sliding")) {
+        if (!myAnimator.GetBool("Sliding") && !myAnimator.GetBool("Running")) {
             myAnimator.SetBool("Crouch", false);
-            float controlThrow = Input
-                .GetAxisRaw("Vertical");
+            float controlThrow = Input.GetAxisRaw("Vertical");
             if (controlThrow < 0) {
                 myAnimator.SetBool("Crouch", true);               
             }
@@ -471,14 +526,54 @@ public class PlayerScript : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-
-
-        if (collision.gameObject.CompareTag("enemy"))
-        {
+    private void OnCollisionEnter2D(Collision2D collision) {
+        if (collision.gameObject.tag == "enemy") {
             currentHP -= 10;
         }
 
+        
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.tag == "itemPrefab") {
+            Debug.Log("Do something here");
+            if(slot1.transform.childCount == 0) {
+                collision.gameObject.transform.parent = slot1.transform;
+                collision.gameObject.transform.localPosition = new Vector3(3, -3, 0);
+                playerInventory.AddItem(new Item {
+                        itemType = slot1.GetComponentInChildren<Item>().itemType,
+                        itemName = slot1.GetComponentInChildren<Item>().itemName,
+                        itemAmountt = slot1.GetComponentInChildren<Item>().itemAmountt,
+                        itemSTR = slot1.GetComponentInChildren<Item>().itemSTR,
+
+                });
+                Debug.Log("item eklendi");
+                
+
+
+            }
+            else if(slot2.transform.childCount == 0) {
+                collision.gameObject.transform.parent = slot2.transform;
+                collision.gameObject.transform.localPosition = new Vector3(3, -3, 0);
+                playerInventory.AddItem(new Item {
+                    itemType = slot1.GetComponentInChildren<Item>().itemType,
+                    itemName = slot1.GetComponentInChildren<Item>().itemName,
+                    itemAmountt = slot1.GetComponentInChildren<Item>().itemAmountt,
+                    itemSTR = slot1.GetComponentInChildren<Item>().itemSTR,
+
+                });
+                Debug.Log("item eklendi");
+
+            }
+            else if(slot3.transform.childCount == 0) {
+                collision.gameObject.transform.parent = slot3.transform;
+
+            }
+
+
+
+
+        }
     }
 }

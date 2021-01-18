@@ -20,7 +20,13 @@ public class ItemAmount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("amount test");
-        textbook.text = "" + itemPrefab.GetComponent<Item>().itemAmountt;
+        if(itemPrefab.GetComponent<Item>().itemAmountt == 1) {
+            textbook.text = "";
+        } else {
+            textbook.text = "" + itemPrefab.GetComponent<Item>().itemAmountt;
+        }
+        
     }
+
+    
 }

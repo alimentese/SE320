@@ -3,7 +3,30 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - maxSTR
+  - platform
+  - InventorySlot
+  - maxDEX
+  - maxAGI
+  - maxSTA
+  - maxINT
+  - maxMAG
+  - maxHP
+  - ItemAmount
+  - SwordAttackRange
+  - enemy
+  - head
+  - chest
+  - hand
+  - pants
+  - inventorySlot1
+  - UI
+  - itemPool
+  - itemPrefab
+  - popupName
+  - popupBonus
+  - itemDesc
   layers:
   - Default
   - TransparentFX
@@ -13,11 +36,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Background
+  - Foreground
+  - Enemy
+  - Player
+  - Item
   - 
   - 
   - 
@@ -40,4 +63,25 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 153884113
+    locked: 0
+  - name: Foreground
+    uniqueID: 1854023353
+    locked: 0
+  - name: Platform
+    uniqueID: 1273863375
+    locked: 0
+  - name: Enemy
+    uniqueID: 3995440533
+    locked: 0
+  - name: Player
+    uniqueID: 2772269779
+    locked: 0
+  - name: UIBackground
+    uniqueID: 358111947
+    locked: 0
+  - name: UIForeground
+    uniqueID: 425680083
     locked: 0

@@ -77,7 +77,7 @@ public class Stats : MonoBehaviour
     void Update()
     {
 
-        attributePoints.text = playerscript.attributePoints.ToString();
+        //attributePoints.text = playerscript.attributePoints.ToString();
         hpText.text = playerscript.maxHP.ToString();
         staText.text = playerscript.maxSTA.ToString();
         strText.text = playerscript.maxSTR.ToString();

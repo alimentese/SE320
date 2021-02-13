@@ -27,6 +27,7 @@ TagManager:
   - popupName
   - popupBonus
   - itemDesc
+  - inventoryUI
   layers:
   - Default
   - TransparentFX

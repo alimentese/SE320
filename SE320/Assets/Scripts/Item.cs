@@ -63,11 +63,13 @@ public class Item : MonoBehaviour
     public Text itemdescbonus;
 
 
-    public GameObject slot1;
-    [SerializeField] public GameObject slot2;
-    [SerializeField] public GameObject slot3;
-    [SerializeField] public GameObject slot4;
-    [SerializeField] public GameObject slot5;
+    public InventoryUI ui;
+    public List<GameObject> slots;
+    [SerializeField] private GameObject slot1;
+    [SerializeField] private GameObject slot2;
+    [SerializeField] private GameObject slot3;
+    [SerializeField] private GameObject slot4;
+    [SerializeField] private GameObject slot5;
     [SerializeField] private GameObject slot6;
     [SerializeField] private GameObject slot7;
     [SerializeField] private GameObject slot8;
@@ -128,22 +130,31 @@ public class Item : MonoBehaviour
         if (itemType == ItemType.sword) {            
             if(itemWorn == false) {
                 
-                uiequipment.AddItem(FindIteminInventory("sword"));
-                inventory.RemoveItem("sword");
+                uiequipment.AddItem(FindIteminInventory(gameObject.transform.GetComponent<Item>().itemName));                
                 this.gameObject.transform.parent = hand.transform;
                 this.gameObject.transform.position = hand.transform.position;
                 player.currentSTR += 10;
-                player.maxSTR += 10;
-
+                player.maxSTR += 10;               
+                //Destroy(gameObject);
+                player.GetComponent<PlayerScript>().playerInventory.RemoveItem(gameObject.transform.GetComponent<Item>().itemName);
+                Debug.Log("item silindi!");                
                 itemWorn = true;
             } else if (itemWorn == true) {
-                inventory.AddItem(FindIteminEquipment("sword"));
-                uiequipment.RemoveItem("sword");
-                this.gameObject.transform.parent = slot1.transform;
-                this.gameObject.transform.position = slot1.transform.position;
+                inventory.AddItem(FindIteminEquipment(gameObject.transform.GetComponent<Item>().itemName));
+                uiequipment.RemoveItem("Sword");
+
+                player.GetComponent<PlayerScript>().playerInventory.RemoveItem(gameObject.transform.GetComponent<Item>().itemName);
+                // this.gameObject.transform.parent = slot1.transform;
+                // this.gameObject.transform.position = slot1.transform.position;
+                for (int i = 0; i < slots.Count; i++) {
+                    if (slots[i].transform.childCount == 0) {
+                        this.gameObject.transform.parent = slots[i].transform;
+                        this.gameObject.transform.position = slots[i].transform.position;
+                        break;
+                    }
+                }
                 player.currentSTR -= 10;
                 player.maxSTR -= 10;
-
                 itemWorn = false;
                 Debug.Log("equipment tıklanabiliyor");
             }               
@@ -151,9 +162,6 @@ public class Item : MonoBehaviour
 
     }
     
-    public void itemPickUp() {
-    }
-
     public void sa() {
         Debug.Log("Item name: "+ this.gameObject.GetComponent<Item>().itemName);
         itemdescname.text = "Name: " + this.gameObject.GetComponent<Item>().itemName;
@@ -186,17 +194,41 @@ public class Item : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        slot1 = GameObject.Find("slot (1)");
+        slot2 = GameObject.Find("slot (2)");
+        slot3 = GameObject.Find("slot (3)");
+        slot4 = GameObject.Find("slot (4)");
+        slot5 = GameObject.Find("slot (5)");
+        slot6 = GameObject.Find("slot (6)");
+        slot7 = GameObject.Find("slot (7)");
+        slot8 = GameObject.Find("slot (8)");
+        slot9 = GameObject.Find("slot (9)");
+        slot10 = GameObject.Find("slot (10)");
+        slot11 = GameObject.Find("slot (11)");
+        slot12 = GameObject.Find("slot (12)");
+
+        slots = new List<GameObject> {
+            slot1,
+            slot2,
+            slot3,
+            slot4,
+            slot5,
+            slot6,
+            slot7,
+            slot8,
+            slot9,
+            slot10,
+            slot11,
+            slot12
+        };
+
         playerObject = GameObject.FindGameObjectWithTag("Player");
         player = playerObject.GetComponent<PlayerScript>();
         uiequipment = playerObject.GetComponent<PlayerScript>().playerEquipment;
         inventory = playerObject.GetComponent<PlayerScript>().playerInventory;
         boxcollider = itemPrefab.GetComponent<BoxCollider2D>();
-        itemDescPopup = GameObject.FindGameObjectWithTag("itemDesc");
-        itemDesc = itemDescPopup.transform.GetChild(0).gameObject;
-
-
-
+         
 
         head = GameObject.FindGameObjectWithTag("head");
         chest = GameObject.FindGameObjectWithTag("chest");
@@ -205,6 +237,8 @@ public class Item : MonoBehaviour
 
         slot1 = GameObject.FindGameObjectWithTag("inventorySlot1"); //?
 
+        itemDescPopup = GameObject.FindGameObjectWithTag("itemDesc");
+        itemDesc = itemDescPopup.transform.GetChild(0).gameObject;
         itemdescname = itemDesc.transform.GetChild(1).gameObject.GetComponent<Text>();
         itemdescbonus = itemDesc.transform.GetChild(2).gameObject.GetComponent<Text>();
 

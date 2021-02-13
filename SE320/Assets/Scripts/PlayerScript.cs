@@ -17,6 +17,17 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private GameObject slot1;
     [SerializeField] private GameObject slot2;
     [SerializeField] private GameObject slot3;
+    [SerializeField] private GameObject slot4;
+    [SerializeField] private GameObject slot5;
+    [SerializeField] private GameObject slot6;
+    [SerializeField] private GameObject slot7;
+    [SerializeField] private GameObject slot8;
+    [SerializeField] private GameObject slot9;
+    [SerializeField] private GameObject slot10;
+    [SerializeField] private GameObject slot11;
+    [SerializeField] private GameObject slot12;
+
+    public List<GameObject> slots;
 
     [SerializeField] ParticleSystem FlipDust;
 
@@ -97,14 +108,6 @@ public class PlayerScript : MonoBehaviour
     float rotateTime = 0.5f;
 
 
-
-
-    //public PlayerInventory inventory;
-
-    public InventoryUI inventoryUI;
-
-
-
     public GameObject[] platforms;
     public PlatformEffector2D effector;
     public float health = 100f;
@@ -151,8 +154,16 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update, initialization, message then methods
     void Start()   {
 
-
-
+        slots = new List<GameObject> {
+            slot1,
+            slot2,
+            slot3,
+            slot4,
+            slot5,
+            slot6,
+            slot7,
+            slot8
+        };
 
 
         playerInventory.PrintItemCount();
@@ -186,18 +197,16 @@ public class PlayerScript : MonoBehaviour
             itemSTR = 10,
         });
     }
+
+    public void deleteitem() {
+        playerInventory.RemoveItem("sword");
+    }
     // Update is called once per frame 
     void Update() {
 
         Debug.Log("ui control: " + isUIOn);
         playerInventory.PrintItemCount();
         playerEquipment.CountItems();
-
-        for (int i = 0; i < playerEquipment.GetItemList().Count; i++) {
-            if (playerEquipment.GetItemList()[i].itemName == "sword") {
-                Debug.Log("sword equipmentda bulundu");
-            }
-        }
 
         time = Time.time;
         platforms = GameObject.FindGameObjectsWithTag("platform");
@@ -522,58 +531,29 @@ public class PlayerScript : MonoBehaviour
                 transform.localScale = new Vector2(Mathf.Sign(myRigidbody.velocity.x) * 1, 1f);
                 //CreateDust();
             }
-        }
-        
+        }       
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "enemy") {
             currentHP -= 10;
         }
-
-        
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag == "itemPrefab") {
-            Debug.Log("Do something here");
-            if(slot1.transform.childCount == 0) {
-                collision.gameObject.transform.parent = slot1.transform;
-                collision.gameObject.transform.localPosition = new Vector3(3, -3, 0);
-                playerInventory.AddItem(new Item {
-                        itemType = slot1.GetComponentInChildren<Item>().itemType,
-                        itemName = slot1.GetComponentInChildren<Item>().itemName,
-                        itemAmountt = slot1.GetComponentInChildren<Item>().itemAmountt,
-                        itemSTR = slot1.GetComponentInChildren<Item>().itemSTR,
-
-                });
-                Debug.Log("item eklendi");
-                
-
-
+            for (int i = 0; i < slots.Count; i++) {
+                if (slots[i].transform.childCount == 0) {
+                    playerInventory.AddItem(new Item {
+                        itemType = collision.transform.GetComponent<Item>().itemType,
+                        itemName = collision.transform.GetComponent<Item>().itemName,
+                        itemAmountt = collision.transform.GetComponent<Item>().itemAmountt
+                    });
+                    Destroy(collision.gameObject);
+                    break;
+                }
             }
-            else if(slot2.transform.childCount == 0) {
-                collision.gameObject.transform.parent = slot2.transform;
-                collision.gameObject.transform.localPosition = new Vector3(3, -3, 0);
-                playerInventory.AddItem(new Item {
-                    itemType = slot1.GetComponentInChildren<Item>().itemType,
-                    itemName = slot1.GetComponentInChildren<Item>().itemName,
-                    itemAmountt = slot1.GetComponentInChildren<Item>().itemAmountt,
-                    itemSTR = slot1.GetComponentInChildren<Item>().itemSTR,
-
-                });
-                Debug.Log("item eklendi");
-
-            }
-            else if(slot3.transform.childCount == 0) {
-                collision.gameObject.transform.parent = slot3.transform;
-
-            }
-
-
-
-
         }
+
     }
 }

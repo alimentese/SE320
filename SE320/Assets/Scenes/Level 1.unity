@@ -26057,15 +26057,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: Skeleton_Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5141016803190298371, guid: 7ec74c1feffdd2a4db0c97622a0733a7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5141016803190298374, guid: 7ec74c1feffdd2a4db0c97622a0733a7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.04682541
+      value: 0.43
       objectReference: {fileID: 0}
     - target: {fileID: 5141016803190298374, guid: 7ec74c1feffdd2a4db0c97622a0733a7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -6.3405857
+      value: -5.72
       objectReference: {fileID: 0}
     - target: {fileID: 5141016803190298374, guid: 7ec74c1feffdd2a4db0c97622a0733a7,
         type: 3}

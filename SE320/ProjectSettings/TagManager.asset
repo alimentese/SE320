@@ -28,6 +28,8 @@ TagManager:
   - popupBonus
   - itemDesc
   - inventoryUI
+  - JumpArea
+  - Skeleton
   layers:
   - Default
   - TransparentFX

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5139033155677343721}
   - component: {fileID: 5139033155677343720}
   - component: {fileID: 5139033155677343734}
-  - component: {fileID: 614478096113947949}
+  - component: {fileID: -9129751105023643605}
   m_Layer: 10
   m_Name: Enemy
   m_TagString: enemy
@@ -51,7 +51,6 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -76,7 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 177991187
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -3307005949141532847, guid: 5a82723844cab7848855d17af4991749, type: 3}
+  m_Sprite: {fileID: -3307005949141532847, guid: 5a82723844cab7848855d17af4991749,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -169,7 +169,7 @@ CapsuleCollider2D:
   m_Offset: {x: -0.016292095, y: 0.016292095}
   m_Size: {x: 0.66854, y: 0.66854}
   m_Direction: 0
---- !u!114 &614478096113947949
+--- !u!114 &-9129751105023643605
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -178,9 +178,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5139033155677343727}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b80ff3809e34d844da64033ec862ff51, type: 3}
+  m_Script: {fileID: 11500000, guid: cd94eec8a44f82d41b886a78f4605a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  health: 100
-  playerr: {fileID: 0}
+  player: {fileID: 0}
+  EnemySpeed: 2
+  AgroRange: 10
+  EnemyJump: 5
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  isGrounded: 0
+  ontrigger: 0

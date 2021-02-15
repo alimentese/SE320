@@ -19,7 +19,7 @@ public class BEnemy : MonoBehaviour
     float EnemyJump;
 
     [SerializeField]
-    float SkeletonHealth;
+    public float SkeletonHealth;
 
     [SerializeField]
     public int SkeletonDamage;
@@ -45,8 +45,8 @@ public class BEnemy : MonoBehaviour
     }
     
     void Update(){
-        
-       
+
+        checkAlive();
         float distToPlayer = Vector2.Distance(transform.position, player.position);
         isGrounded = Physics2D.OverlapBox(new Vector2(gameObject.transform.position.x, gameObject.transform.position.y - 1.0f),new Vector2(0.9f, 0.4f),0f, groundMask);
 
@@ -99,9 +99,7 @@ public class BEnemy : MonoBehaviour
     }
 
 
-    public void TakenDamage(int dmg) {
-        SkeletonHealth -= dmg;
-
+    public void checkAlive() {
         if (SkeletonHealth <= 0){
             Debug.Log(SkeletonHealth);
             Destroy(gameObject);

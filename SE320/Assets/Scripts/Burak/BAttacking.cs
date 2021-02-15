@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class BAttacking : MonoBehaviour
 {
-    
+    public GameObject player;
     public bool trigger = false;
 
     void OnTriggerEnter2D(Collider2D col){
         
          if(col.gameObject.tag == "Player"){
-            Debug.Log("Hoşgeldim");
             trigger = true;
              
          }
@@ -22,5 +21,9 @@ public class BAttacking : MonoBehaviour
              
          }
         
+    }
+
+    private void Start() {
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 }

@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 5141016803190298426}
   m_Layer: 0
   m_Name: Skeleton_Enemy
-  m_TagString: Skeleton
+  m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,9 +220,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   EnemySpeed: 2
-  AgroRange: 25
+  AgroRange: 35
   EnemyJump: 10
-  SkeletonHealth: 2
+  SkeletonHealth: 15
   SkeletonDamage: 10
   groundMask:
     serializedVersion: 2
@@ -333,4 +333,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b965a3b871f51574c80652d58e560e86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   trigger: 0

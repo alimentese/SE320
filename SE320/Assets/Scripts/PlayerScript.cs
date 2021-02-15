@@ -69,17 +69,6 @@ public class PlayerScript : MonoBehaviour
         maxINT = 10;
     }
 
-    public void TakeDamage(int dmg) {
-        currentHP -= dmg;
-
-        if (currentHP <= 0){
-            Debug.Log(currentHP);
-            Destroy(gameObject);
-        }
-            
-        
-    }
-
     public void Heal(int amount) {
         currentHP += amount;
         if (currentHP > maxHP)
@@ -514,7 +503,7 @@ public class PlayerScript : MonoBehaviour
         {
             health -= 1;
         }*/
-        if(health <= 0)
+        if(currentHP <= 0)
         {
             isAlive = false;
             myAnimator.SetBool("Running", false);
@@ -535,13 +524,6 @@ public class PlayerScript : MonoBehaviour
             }
         }       
     }
-
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "enemy") {
-            currentHP -= 10;
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.tag == "itemPrefab") {
             for (int i = 0; i < slots.Count; i++) {

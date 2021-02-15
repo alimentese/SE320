@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 20866411}
   - component: {fileID: 20866410}
   - component: {fileID: 20866409}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: demoplatform
   m_TagString: platform
   m_Icon: {fileID: 0}
@@ -3167,7 +3167,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 312226548}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.2690477, y: 2.2698998, z: -10}
+  m_LocalPosition: {x: -6.312166, y: 2.2700481, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1299787866}
@@ -5196,7 +5196,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619604698}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.520897, y: -5.016634, z: 6.560169}
+  m_LocalPosition: {x: -10.563896, y: -4.9826345, z: 6.560169}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 915425158}
@@ -5340,12 +5340,12 @@ PrefabInstance:
     - target: {fileID: 9001135577187151497, guid: 758cf46cafeda3e409bac0a84ec07d1f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.297
+      value: -6.34
       objectReference: {fileID: 0}
     - target: {fileID: 9001135577187151497, guid: 758cf46cafeda3e409bac0a84ec07d1f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.784
+      value: -5.75
       objectReference: {fileID: 0}
     - target: {fileID: 9001135577187151497, guid: 758cf46cafeda3e409bac0a84ec07d1f,
         type: 3}
@@ -5400,7 +5400,7 @@ PrefabInstance:
     - target: {fileID: 9001135577187151499, guid: 758cf46cafeda3e409bac0a84ec07d1f,
         type: 3}
       propertyPath: m_SortingLayerID
-      value: -566317983
+      value: -1522697517
       objectReference: {fileID: 0}
     - target: {fileID: 9001135577187151499, guid: 758cf46cafeda3e409bac0a84ec07d1f,
         type: 3}
@@ -5466,6 +5466,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Points.Array.data[2].x
       value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 9001135577187151543, guid: 758cf46cafeda3e409bac0a84ec07d1f,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9001135577244598608, guid: 758cf46cafeda3e409bac0a84ec07d1f,
         type: 3}
@@ -8393,7 +8398,7 @@ GameObject:
   - component: {fileID: 1058579550}
   - component: {fileID: 1058579549}
   - component: {fileID: 1058579551}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Foreground
   m_TagString: Untagged
   m_Icon: {fileID: 0}

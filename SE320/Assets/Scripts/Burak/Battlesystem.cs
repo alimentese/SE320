@@ -86,9 +86,9 @@ public class Battlesystem : MonoBehaviour
     * Wave part
     */
     [System.Serializable]
-    private class Wave {
+    public class Wave {
 
-        [SerializeField] private float timer;
+        public float timer;
         [SerializeField] private EnemySpawn[] enemySpawnArray;
 
         public void Update(){

@@ -22,7 +22,7 @@ public class EnemySpawn : MonoBehaviour
     }
 
     public void Spawn(){
-          if(gameObject.tag == "Skeleton"){
+          if(gameObject.tag == "enemy"){
             gameObject.SetActive(true);
           }
     }

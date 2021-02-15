@@ -46,7 +46,7 @@ public class InventoryUI : MonoBehaviour
 
         RefreshInventory();
 
-//        Debug.Log("ITem liste kac tane item var: " + player.GetComponent<PlayerScript>().playerInventory.GetItemList().Count);
+        Debug.Log("ITem liste kac tane item var: " + player.GetComponent<PlayerScript>().playerInventory.GetItemList().Count);
 
     }
 

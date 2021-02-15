@@ -36,7 +36,7 @@ public class Equipment : MonoBehaviour
     }
 
     public void CountItems() {
-//        Debug.Log("toplam equipment item: " + ItemsInEquipment.Count);
+       Debug.Log("toplam equipment item: " + ItemsInEquipment.Count);
     }
 
     private void Awake() {

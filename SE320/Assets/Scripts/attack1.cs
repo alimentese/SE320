@@ -13,34 +13,34 @@ public class attack1 : MonoBehaviour
     BEnemy bTakenDamage;
     public GameObject Playerr;
     PlayerScript player;
-    
-    
-    void Start()
-    {   
+
+
+
+    void Start() {
+
         player = Playerr.GetComponent<PlayerScript>();
         bTakenDamage = Skeleton_Enemy.GetComponent<BEnemy>();
         SwingSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         enemy = GameObject.FindGameObjectsWithTag("enemy");
         foreach (GameObject enemy in enemy) {
             enemyscript = enemy.GetComponent<Enemy>();
         }
 
-        
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "enemy") {
-            Attack1(collision.gameObject);        
+            Attack1(collision.gameObject);
         }
 
-         if(collision.gameObject.tag == "Skeleton"){
+        /*if (collision.gameObject.tag == "Skeleton") {
             bTakenDamage.TakenDamage(player.damage);
-        }
+        }*/
 
     }
 
@@ -48,14 +48,18 @@ public class attack1 : MonoBehaviour
         if (collision.gameObject.CompareTag("enemy")) {
             Attack1(collision.gameObject);
         }
-       
+
     }
-    
+
 
     private void Attack1(GameObject enemy) {
         SwingSound.Play();
-        enemy.GetComponent<Enemy>().health -= 25;
-        enemy.GetComponent<Rigidbody2D>().AddForce(new Vector2(5, 5));
+        System.Random random = new System.Random();
+        int damage = random.Next(1, (int)player.GetComponent<PlayerScript>().currentSTR);
+        enemy.GetComponent<BEnemy>().SkeletonHealth -= damage;
+        Debug.Log("Damage: " + damage);
+        Debug.Log("Enemy HP: " + enemy.GetComponent<BEnemy>().SkeletonHealth);
+        enemy.GetComponent<Rigidbody2D>().AddForce(new Vector2(50, 50));
 
     }
 }

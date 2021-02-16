@@ -47,7 +47,11 @@ public class attack1 : MonoBehaviour
         }
         if (enemy.gameObject.name == "Skeleton_Enemy") {
             enemy.GetComponent<BEnemy>().SkeletonHealth -= damage;
-        }                                 
+        }
+        if (enemy.gameObject.name == "Mushroom") {
+            enemy.GetComponent<BEnemy>().SkeletonHealth -= damage;
+        }
+
         Debug.Log("Damage: " + damage);
         if(enemy.gameObject.transform.localScale.x == -1) {
             enemy.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 1800);

@@ -5,14 +5,12 @@ using UnityEngine;
 public class BDamage : MonoBehaviour
 {
     public GameObject Playerr;
-    private PlayerScript PlTake;
     public GameObject Skeleton_Enemy;
     private BEnemy Skeleton_Damage;
 
     void Start()
     {
         Playerr = GameObject.Find("Player");
-        PlTake = Playerr.GetComponent<PlayerScript>();
         Skeleton_Damage = Skeleton_Enemy.GetComponent<BEnemy>();
     }
          

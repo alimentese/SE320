@@ -8,9 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] float moveSpeed =2f;
     public float health = 100f;
     Rigidbody2D myRigidbody2D;
-    public GameObject playerr;
-    PlayerScript player;
-
+    public GameObject player;
     //BoxCollider2D periscope;
 
     // Start is called before the first frame update
@@ -18,8 +16,6 @@ public class Enemy : MonoBehaviour
     {
         myRigidbody2D = GetComponent<Rigidbody2D>();
         //periscope = GetComponent<BoxCollider2D>();
-        player = playerr.GetComponent<PlayerScript>();
-
     }
 
     // Update is called once per frame

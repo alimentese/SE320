@@ -7,15 +7,13 @@ public class EnemyScript : MonoBehaviour
 {
     GameObject attackBox;
     Animator anim;
-    GameObject player;
+    public GameObject player;
     public float attackDistance = 3f;
     public float seekDistance = 35f;
     public float speed = 10f;
     public bool dying = false;
-    public GameObject Playerr;
-    private PlayerScript PlTake;
-    int enemydamage;
-    public int mashroomdamage = 2;
+    int mashroomdamage = 20;
+    int mushroomhealth = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -23,14 +21,12 @@ public class EnemyScript : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponent<Animator>();
         attackBox = transform.GetChild(0).gameObject;
-        Playerr = GameObject.Find("Player");
-        PlTake = Playerr.GetComponent<PlayerScript>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        checkAlive();
     }
 
     private void FixedUpdate()
@@ -81,22 +77,27 @@ public class EnemyScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("SwordAttackRange"))
-        {
-            dying = true;
-            anim.SetBool("Death",true);
-            Destroy(gameObject, 1f);
-        }
-        if (col.gameObject.tag == "Player") {
-            System.Random random = new System.Random();
-            Playerr.GetComponent<PlayerScript>().currentHP -= random.Next((int)(mashroomdamage - ((double)Playerr.GetComponent<PlayerScript>().maxDEX) % 25));
-            Debug.Log("Enemy damage: " + enemydamage);
+        if (col.gameObject.CompareTag("Player")) {
+            Attack();
         } 
         
     }
 
+    private void checkAlive() {
+        if(mushroomhealth <= 0) {
+            dying = true;
+            anim.SetBool("Death", true);
+            Destroy(gameObject, 1f);
+        }
+    }
     private void Attack()
     {
+        System.Random random = new System.Random();
+        int dex = player.GetComponent<PlayerScript>().maxDEX / 4;
+        int damage = random.Next(1, (mashroomdamage - dex));
+        player.GetComponent<PlayerScript>().currentHP -= 1;
+        Debug.Log("Enemy damage: " + damage);
+        
         if (!dying)
         { 
             attackBox.SetActive(true);
@@ -108,9 +109,4 @@ public class EnemyScript : MonoBehaviour
     {
         attackBox.SetActive(false);
     }
-    
-    
-   
-    
-    
 }

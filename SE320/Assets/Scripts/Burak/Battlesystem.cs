@@ -80,48 +80,4 @@ public class Battlesystem : MonoBehaviour
             return true;
 
     }
-
-
-    /*
-    * Wave part
-    */
-    [System.Serializable]
-    public class Wave {
-
-        public float timer;
-        [SerializeField] private EnemySpawn[] enemySpawnArray;
-
-        public void Update(){
-         if(timer > 0){
-                timer -=Time.deltaTime;
-                if(timer<0){
-                    SpawnEnemies();
-                }
-            }
-            
-        }
-
-        private void SpawnEnemies(){
-            foreach(EnemySpawn EnemySpawn in enemySpawnArray){
-                EnemySpawn.Spawn();
-            }
-        }
-
-        public bool IsWaveOver(){
-            if(timer <0){
-
-                foreach(EnemySpawn enemySpawn in enemySpawnArray){
-                    if(enemySpawn.IsAlive()){
-                        return false;
-                    }
-
-                }
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-    }  
-    
 }

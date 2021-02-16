@@ -13,6 +13,7 @@ public class UI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+      
         resolutions = Screen.resolutions;
 
         //resolutionDropdown.ClearOptions();
@@ -43,7 +44,6 @@ public class UI : MonoBehaviour
         SceneManager.LoadScene("Loading Screen");
         
     }
-
     public void BacktoMainScreen(string scene) {
         SceneManager.LoadScene(scene);
     }
@@ -51,21 +51,9 @@ public class UI : MonoBehaviour
         Debug.Log("QUIT!");
         Application.Quit();
     }
-
-    public void BacktoClassSelect(string scene) {
-        SceneManager.LoadScene(scene);
-    }
-
-    public void KnightSelected(string scene) {
-        SceneManager.LoadScene(scene);
-    }
-
-    public void stageOne(string scene) {
-        SceneManager.LoadScene(scene);
-    }
-
     public void PlayAgain() {
-        SceneManager.LoadScene("Stage1");
+        LoadingScreen.scene = "Main Menu";
+        SceneManager.LoadScene("Loading Screen");
     }
 
     /* OPTIONS MENU METHODS */

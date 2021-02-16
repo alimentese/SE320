@@ -38,10 +38,7 @@ public class BEnemy : MonoBehaviour
         EnemyRb = GetComponent<Rigidbody2D>();
         EnemyAnim = GetComponent<Animator>();
         battack = TriggerArea.GetComponent<BAttacking>();
-        player = GameObject.Find("Player").transform;
-         
-       
-        
+        player = GameObject.Find("Player").transform;                       
     }
     
     void Update(){

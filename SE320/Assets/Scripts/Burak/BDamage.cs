@@ -8,8 +8,6 @@ public class BDamage : MonoBehaviour
     private PlayerScript PlTake;
     public GameObject Skeleton_Enemy;
     private BEnemy Skeleton_Damage;
-    int enemydamage;
-
 
     void Start()
     {
@@ -19,10 +17,12 @@ public class BDamage : MonoBehaviour
     }
          
     void OnTriggerEnter2D(Collider2D col){       
-        if (col.gameObject.tag == "Player") {
+        if (col.gameObject.CompareTag("Player")) {
             System.Random random = new System.Random();
-            Playerr.GetComponent<PlayerScript>().currentHP -= random.Next((int)(Skeleton_Damage.SkeletonDamage - ((double)Playerr.GetComponent<PlayerScript>().maxDEX) % 25));
-            Debug.Log("Enemy damage: " + enemydamage);
+            int dex = Playerr.GetComponent<PlayerScript>().maxDEX / 4;
+            int damage = random.Next(1, (Skeleton_Damage.SkeletonDamage - dex));
+            Playerr.GetComponent<PlayerScript>().currentHP -= damage;
+            Debug.Log("Enemy damage: " + damage);
         } 
     }  
 }

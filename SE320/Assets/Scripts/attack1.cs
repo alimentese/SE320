@@ -8,18 +8,15 @@ public class attack1 : MonoBehaviour
     //[SerializeField] GameObject enemy;
     public GameObject[] enemy;
     private AudioSource SwingSound;
-    Enemy enemyscript;
+    Enemy EnemyObject;
     public GameObject Skeleton_Enemy;
-    BEnemy bTakenDamage;
     public GameObject Playerr;
     PlayerScript player;
 
 
 
     void Start() {
-
         player = Playerr.GetComponent<PlayerScript>();
-        bTakenDamage = Skeleton_Enemy.GetComponent<BEnemy>();
         SwingSound = GetComponent<AudioSource>();
     }
 
@@ -27,26 +24,14 @@ public class attack1 : MonoBehaviour
     void Update() {
         enemy = GameObject.FindGameObjectsWithTag("enemy");
         foreach (GameObject enemy in enemy) {
-            enemyscript = enemy.GetComponent<Enemy>();
+            EnemyObject = enemy.GetComponent<Enemy>();
         }
-
-
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.gameObject.tag == "enemy") {
-            Attack1(collision.gameObject);
-        }
-
-        /*if (collision.gameObject.tag == "Skeleton") {
-            bTakenDamage.TakenDamage(player.damage);
-        }*/
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision) {
         if (collision.gameObject.CompareTag("enemy")) {
             Attack1(collision.gameObject);
+            Debug.Log("ontrigger");
         }
 
     }
@@ -56,10 +41,23 @@ public class attack1 : MonoBehaviour
         SwingSound.Play();
         System.Random random = new System.Random();
         int damage = random.Next(1, (int)player.GetComponent<PlayerScript>().currentSTR);
-        enemy.GetComponent<BEnemy>().SkeletonHealth -= damage;
+        
+        if(enemy.gameObject.name == "Slime") {
+            enemy.GetComponent<Enemy>().health -= damage;
+        }
+        if (enemy.gameObject.name == "Skeleton_Enemy") {
+            enemy.GetComponent<BEnemy>().SkeletonHealth -= damage;
+        }                                 
         Debug.Log("Damage: " + damage);
-        Debug.Log("Enemy HP: " + enemy.GetComponent<BEnemy>().SkeletonHealth);
-        enemy.GetComponent<Rigidbody2D>().AddForce(new Vector2(50, 50));
+        if(enemy.gameObject.transform.localScale.x == -1) {
+            enemy.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 1800);
+            enemy.GetComponent<Rigidbody2D>().AddForce(transform.up * 65);
+        }
+        if(enemy.gameObject.transform.localScale.x == 1) {
+            enemy.GetComponent<Rigidbody2D>().AddForce(Vector2.left * 1800);
+            enemy.GetComponent<Rigidbody2D>().AddForce(transform.up * 65);
+        }
+
 
     }
 }

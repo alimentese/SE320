@@ -223,7 +223,7 @@ public class PlayerScript : MonoBehaviour
             }
             
         }
-        
+        Debug.Log("DEX: " + maxDEX / 4);
 
     }
 

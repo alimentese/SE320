@@ -30,6 +30,8 @@ TagManager:
   - inventoryUI
   - JumpArea
   - Skeleton
+  - Attack
+  - Gameover
   layers:
   - Default
   - TransparentFX

@@ -95,19 +95,19 @@ public class Attributes : MonoBehaviour
                     decreaseMAG.SetActive(true);
                 break;
                 case "maxSTR":
-                    playerGameObject.GetComponent<PlayerScript>().maxSTR += 10;
+                    playerGameObject.GetComponent<PlayerScript>().maxSTR += 1;
                     decreaseSTR.SetActive(true);
                 break;
                 case "maxDEX":
-                    playerGameObject.GetComponent<PlayerScript>().maxDEX += 10;
+                    playerGameObject.GetComponent<PlayerScript>().maxDEX += 1;
                     decreaseDEX.SetActive(true);
                 break;
                 case "maxAGI":
-                    playerGameObject.GetComponent<PlayerScript>().maxAGI += 10;
+                    playerGameObject.GetComponent<PlayerScript>().maxAGI += 1;
                     decreaseAGI.SetActive(true);
                 break;
                 case "maxINT":
-                    playerGameObject.GetComponent<PlayerScript>().maxINT += 10;
+                    playerGameObject.GetComponent<PlayerScript>().maxINT += 1;
                     decreaseINT.SetActive(true);
                 break;
             }
@@ -155,7 +155,7 @@ public class Attributes : MonoBehaviour
                 break;
                 case "maxSTR":
                     if (playerGameObject.GetComponent<PlayerScript>().maxSTR > defaultMaxSTR) {
-                        playerGameObject.GetComponent<PlayerScript>().maxSTR -= 10;
+                        playerGameObject.GetComponent<PlayerScript>().maxSTR -= 1;
                         playerGameObject.GetComponent<PlayerScript>().attributePoints += 1;
                     }
                     if (playerGameObject.GetComponent<PlayerScript>().maxSTR == defaultMaxSTR) {
@@ -164,7 +164,7 @@ public class Attributes : MonoBehaviour
                 break;
                 case "maxDEX":
                     if (playerGameObject.GetComponent<PlayerScript>().maxDEX > defaultMaxDEX) {
-                        playerGameObject.GetComponent<PlayerScript>().maxDEX -= 10;
+                        playerGameObject.GetComponent<PlayerScript>().maxDEX -= 1;
                         playerGameObject.GetComponent<PlayerScript>().attributePoints += 1;
                     }
                     if (playerGameObject.GetComponent<PlayerScript>().maxDEX == defaultMaxDEX) {
@@ -173,7 +173,7 @@ public class Attributes : MonoBehaviour
                 break;
                 case "maxAGI":
                     if (playerGameObject.GetComponent<PlayerScript>().maxAGI > defaultMaxAGI) {
-                        playerGameObject.GetComponent<PlayerScript>().maxAGI -= 10;
+                        playerGameObject.GetComponent<PlayerScript>().maxAGI -= 1;
                         playerGameObject.GetComponent<PlayerScript>().attributePoints += 1;
                     }
                     if (playerGameObject.GetComponent<PlayerScript>().maxAGI == defaultMaxAGI) {
@@ -182,7 +182,7 @@ public class Attributes : MonoBehaviour
                 break;
                 case "maxINT":
                     if (playerGameObject.GetComponent<PlayerScript>().maxINT > defaultMaxINT) {
-                        playerGameObject.GetComponent<PlayerScript>().maxINT -= 10;
+                        playerGameObject.GetComponent<PlayerScript>().maxINT -= 1;
                         playerGameObject.GetComponent<PlayerScript>().attributePoints += 1;
                     }
                     if (playerGameObject.GetComponent<PlayerScript>().maxINT == defaultMaxINT) {

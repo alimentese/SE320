@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
 
     [SerializeField] float moveSpeed =2f;
-    public float health = 100f;
+    public float health = 50f;
     Rigidbody2D myRigidbody2D;
     public GameObject player;
     //BoxCollider2D periscope;
@@ -53,6 +53,12 @@ public class Enemy : MonoBehaviour
             player.health -= 10f;
         } 
     }*/
+
+    private void OnTriggerEnter2D(Collider2D collision) {
+        if (collision.gameObject.CompareTag("Player")) {
+            player.GetComponent<PlayerScript>().currentHP -= 10f;
+        }
+    }
 
 
 }

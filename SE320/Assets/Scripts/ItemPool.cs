@@ -41,6 +41,8 @@ public class ItemPool : MonoBehaviour
                 newItem.GetComponent<Item>().itemAmountt = item.itemAmountt;
                 newItem.GetComponent<Item>().itemSTR = item.itemSTR;
                 newItem.transform.parent = itemPoolUi.transform;
+                newItem.gameObject.name = item.itemName;
+                newItem.SetActive(false);
             }
         }
     }
@@ -57,8 +59,96 @@ public class ItemPool : MonoBehaviour
             itemAmountt = 1,
             itemName = "sword",
             itemWorn = false,
-            itemSTR = 10        
-    });
+            itemSTR = 5,
+            
+        });
+        itempool.AddItem(new Item {
+            itemType = Item.ItemType.sword2,
+            itemAmountt = 1,
+            itemName = "sword2",
+            itemWorn = false,
+            itemSTR = 10,
+
+        });
+        itempool.AddItem(new Item {
+            itemType = Item.ItemType.sword3,
+            itemAmountt = 1,
+            itemName = "sword3",
+            itemWorn = false,
+            itemSTR = 15,
+        });
+
+
+        itempool.AddItem(new Item {
+            itemType = Item.ItemType.armor,
+            itemAmountt = 1,
+            itemName = "armor",
+            itemWorn = false,
+            itemSTR = 10,
+        });
+        itempool.AddItem(new Item {
+            itemType = Item.ItemType.armor2,
+            itemAmountt = 1,
+            itemName = "armor2",
+            itemWorn = false,
+            itemSTR = 10,
+        });
+        itempool.AddItem(new Item {
+            itemType = Item.ItemType.armor3,
+            itemAmountt = 1,
+            itemName = "armor3",
+            itemWorn = false,
+            itemSTR = 10,
+        });
+
+
+        itempool.AddItem(new Item {
+            itemType = Item.ItemType.helmet,
+            itemAmountt = 1,
+            itemName = "helmet",
+            itemWorn = false,
+            itemSTR = 10,
+        });
+        itempool.AddItem(new Item {
+            itemType = Item.ItemType.helmet2,
+            itemAmountt = 1,
+            itemName = "helmet2",
+            itemWorn = false,
+            itemSTR = 10,
+        });
+        itempool.AddItem(new Item {
+            itemType = Item.ItemType.helmet3,
+            itemAmountt = 1,
+            itemName = "helmet3",
+            itemWorn = false,
+            itemSTR = 10,
+        });
+
+
+        itempool.AddItem(new Item {
+            itemType = Item.ItemType.shoes,
+            itemAmountt = 1,
+            itemName = "shoes",
+            itemWorn = false,
+            itemSTR = 10,
+        });
+        itempool.AddItem(new Item {
+            itemType = Item.ItemType.shoes2,
+            itemAmountt = 1,
+            itemName = "shoes2",
+            itemWorn = false,
+            itemSTR = 10,
+        });
+
+
+        itempool.AddItem(new Item {
+            itemType = Item.ItemType.point,
+            itemAmountt = 1,
+            itemName = "point",
+            itemWorn = false,
+            itemSTR = 10,
+        });
+
         itempool.AddItem(new Item {
             itemType = Item.ItemType.HealthPotion,
             itemAmountt = 5,
@@ -67,8 +157,28 @@ public class ItemPool : MonoBehaviour
         itempool.AddItem(new Item {
             itemType = Item.ItemType.StaminaPotion,
             itemAmountt = 10,
-            itemName = "sta"
+            itemName = "stamina potion"
         });
+
+        spawnItem("sword");
+        spawnItem("sword2");
+        spawnItem("sword3");
+        spawnItem("armor");
+        spawnItem("armor2");
+        spawnItem("armor3");
+        spawnItem("helmet");
+        spawnItem("helmet2");
+        spawnItem("helmet3");
+        spawnItem("shoes");
+        spawnItem("shoes2");
+        spawnItem("point");
+        spawnItem("shoes");
+        spawnItem("stamina potion");
+        spawnItem("health potion");
+
+
+
+
     }
     /*
      *  ITEM LIST
@@ -84,8 +194,4 @@ public class ItemPool : MonoBehaviour
         
     }
 
-    public void nextload() {
-        LoadingScreen.scene = "Level 1";
-        SceneManager.LoadScene("Loading Screen");
-    }
 }

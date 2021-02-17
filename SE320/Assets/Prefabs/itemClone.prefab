@@ -146,9 +146,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1854023353
-  m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingLayerID: 425680083
+  m_SortingLayer: 7
+  m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -172,7 +172,6 @@ GameObject:
   - component: {fileID: 1532917508706879873}
   - component: {fileID: 1532917508706879878}
   - component: {fileID: 5653918407961359761}
-  - component: {fileID: 2427940178269445740}
   - component: {fileID: 4911144817541283227}
   - component: {fileID: 8598629446023843260}
   - component: {fileID: 5317155089055211046}
@@ -251,10 +250,16 @@ MonoBehaviour:
   temp: {fileID: 0}
   temp2: {fileID: 0}
   moveSpeed: 0.1
-  itemType: 0
+  itemType: 13
   itemAmountt: 1
   itemName: Sword
+  itemHP: 0
+  itemSTA: 0
+  itemMAG: 0
   itemSTR: 0
+  itemDEX: 0
+  itemAGI: 0
+  itemINT: 0
   itemWorn: 0
   icon: {fileID: 1532917508532797511}
   level: {fileID: 1532917509153452651}
@@ -266,36 +271,8 @@ MonoBehaviour:
   itemDescBonus: {fileID: 0}
   itemdescname: {fileID: 0}
   itemdescbonus: {fileID: 0}
-  slot1: {fileID: 0}
-  slot2: {fileID: 0}
-  slot3: {fileID: 0}
-  slot4: {fileID: 0}
-  slot5: {fileID: 0}
-  slot6: {fileID: 0}
-  slot7: {fileID: 0}
-  slot8: {fileID: 0}
-  slot9: {fileID: 0}
-  slot10: {fileID: 0}
-  slot11: {fileID: 0}
-  slot12: {fileID: 0}
---- !u!114 &2427940178269445740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532917508706879877}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42b85aba9a4a242458ce94067b92a714, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  swordSprite: {fileID: -6447425667752118579, guid: edae969e13dc5db4a8d0a80adc568903,
-    type: 3}
-  healthPotionSprite: {fileID: -3237844493445452581, guid: edae969e13dc5db4a8d0a80adc568903,
-    type: 3}
-  staminaPotionSprite: {fileID: -4057896849271182281, guid: edae969e13dc5db4a8d0a80adc568903,
-    type: 3}
+  ui: {fileID: 0}
+  slots: []
 --- !u!114 &4911144817541283227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -394,7 +371,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 5653918407961359761}
-          m_MethodName: sa
+          m_MethodName: DescOpen
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -409,7 +386,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 5653918407961359761}
-          m_MethodName: As
+          m_MethodName: CloseDesc
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

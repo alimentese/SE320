@@ -28,7 +28,11 @@ public class InventoryUI : MonoBehaviour
 
 
     // Start is called before the first frame update
+    private void Awake() {
+        RefreshInventory();
+    }
     void Start() {
+        RefreshInventory();
         slots = new List<GameObject> {
             slot1,
             slot2,
@@ -90,7 +94,13 @@ public class InventoryUI : MonoBehaviour
                     player.GetComponent<PlayerScript>().playerInventory.AddItem(new Item {
                         itemType = slots[i].transform.GetChild(0).GetComponent<Item>().itemType,
                         itemName = slots[i].transform.GetChild(0).GetComponent<Item>().itemName,
-                        itemAmountt = slots[i].transform.GetChild(0).GetComponent<Item>().itemAmountt
+                        itemAmountt = slots[i].transform.GetChild(0).GetComponent<Item>().itemAmountt,
+                        itemSTR = slots[i].transform.GetChild(0).GetComponent<Item>().itemSTR,
+                        itemDEX = slots[i].transform.GetChild(0).GetComponent<Item>().itemDEX,
+                        itemAGI = slots[i].transform.GetChild(0).GetComponent<Item>().itemDEX,
+                        itemINT = slots[i].transform.GetChild(0).GetComponent<Item>().itemINT,
+                        itemHP = slots[i].transform.GetChild(0).GetComponent<Item>().itemHP,
+                        itemSTA = slots[i].transform.GetChild(0).GetComponent<Item>().itemSTA
                     });
                    // Debug.Log("if blogu");
                 }
@@ -105,6 +115,12 @@ public class InventoryUI : MonoBehaviour
                     newItem.GetComponent<Item>().itemType = player.GetComponent<PlayerScript>().playerInventory.GetItemList()[i].itemType;
                     newItem.GetComponent<Item>().itemAmountt = player.GetComponent<PlayerScript>().playerInventory.GetItemList()[i].itemAmountt;
                     newItem.GetComponent<Item>().itemName = player.GetComponent<PlayerScript>().playerInventory.GetItemList()[i].itemName;
+                    newItem.GetComponent<Item>().itemSTR = player.GetComponent<PlayerScript>().playerInventory.GetItemList()[i].itemSTR;
+                    newItem.GetComponent<Item>().itemDEX = player.GetComponent<PlayerScript>().playerInventory.GetItemList()[i].itemDEX;
+                    newItem.GetComponent<Item>().itemAGI = player.GetComponent<PlayerScript>().playerInventory.GetItemList()[i].itemAGI;
+                    newItem.GetComponent<Item>().itemINT = player.GetComponent<PlayerScript>().playerInventory.GetItemList()[i].itemINT;
+                    newItem.GetComponent<Item>().itemHP = player.GetComponent<PlayerScript>().playerInventory.GetItemList()[i].itemHP;
+                    newItem.GetComponent<Item>().itemSTA = player.GetComponent<PlayerScript>().playerInventory.GetItemList()[i].itemSTA;
                     newItem.transform.parent = slots[i].transform;
                     newItem.transform.localPosition = newPosition;
                 }

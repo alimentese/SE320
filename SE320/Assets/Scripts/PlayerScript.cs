@@ -533,7 +533,13 @@ public class PlayerScript : MonoBehaviour
                     playerInventory.AddItem(new Item {
                         itemType = collision.transform.GetComponent<Item>().itemType,
                         itemName = collision.transform.GetComponent<Item>().itemName,
-                        itemAmountt = collision.transform.GetComponent<Item>().itemAmountt
+                        itemAmountt = collision.transform.GetComponent<Item>().itemAmountt,
+                        itemSTR = collision.transform.GetComponent<Item>().itemSTR,
+                        itemDEX = collision.transform.GetComponent<Item>().itemDEX,
+                        itemAGI = collision.transform.GetComponent<Item>().itemDEX,
+                        itemINT = collision.transform.GetComponent<Item>().itemINT,
+                        itemHP = collision.transform.GetComponent<Item>().itemHP,
+                        itemSTA = collision.transform.GetComponent<Item>().itemSTA
                     });
                     Destroy(collision.gameObject);
                     break;

@@ -3,7 +3,22 @@ guid: 42b85aba9a4a242458ce94067b92a714
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - swordSprite: {fileID: 133040259445647527, guid: 637054ae4a073d04a9646a1d7e0599cf,
+      type: 3}
+  - sword2Sprite: {instanceID: 0}
+  - sword3Sprite: {instanceID: 0}
+  - armorSprite: {instanceID: 0}
+  - armor2Sprite: {instanceID: 0}
+  - armor3Sprite: {instanceID: 0}
+  - helmetSprite: {instanceID: 0}
+  - helmet2Sprite: {instanceID: 0}
+  - helmet3Sprite: {instanceID: 0}
+  - shoesSprite: {instanceID: 0}
+  - shoes2Sprite: {instanceID: 0}
+  - point: {instanceID: 0}
+  - healthPotionSprite: {instanceID: 0}
+  - staminaPotionSprite: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

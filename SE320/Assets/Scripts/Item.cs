@@ -29,7 +29,19 @@ public class Item : MonoBehaviour
     public string itemName { get; set; } */
     public enum ItemType
     {
+        kilic,
         sword,
+        sword2,
+        sword3,
+        armor,
+        armor2,
+        armor3,
+        helmet,
+        helmet2,
+        helmet3,
+        shoes,
+        shoes2,
+        point,
         HealthPotion,
         ManaPotion,
         StaminaPotion,
@@ -41,8 +53,18 @@ public class Item : MonoBehaviour
     public ItemType itemType;
     public int itemAmountt;
     public string itemName;
+
+    public int itemHP;
+    public int itemSTA;
+    public int itemMAG;
     public int itemSTR;
+    public int itemDEX;
+    public int itemAGI;
+    public int itemINT;
+
+
     public bool itemWorn;
+    
     private Equipment uiequipment;
     private Inventory inventory;
 
@@ -65,18 +87,18 @@ public class Item : MonoBehaviour
 
     public InventoryUI ui;
     public List<GameObject> slots;
-    [SerializeField] private GameObject slot1;
-    [SerializeField] private GameObject slot2;
-    [SerializeField] private GameObject slot3;
-    [SerializeField] private GameObject slot4;
-    [SerializeField] private GameObject slot5;
-    [SerializeField] private GameObject slot6;
-    [SerializeField] private GameObject slot7;
-    [SerializeField] private GameObject slot8;
-    [SerializeField] private GameObject slot9;
-    [SerializeField] private GameObject slot10;
-    [SerializeField] private GameObject slot11;
-    [SerializeField] private GameObject slot12;
+    private GameObject slot1;
+    private GameObject slot2;
+    private GameObject slot3;
+    private GameObject slot4;
+    private GameObject slot5;
+    private GameObject slot6;
+    private GameObject slot7;
+    private GameObject slot8;
+    private GameObject slot9;
+    private GameObject slot10;
+    private GameObject slot11;
+    private GameObject slot12;
 
     private GameObject playerObject;
     private PlayerScript player;
@@ -85,10 +107,19 @@ public class Item : MonoBehaviour
         switch (itemType) {
             default:
             case ItemType.sword: return ItemAssets.Instance.swordSprite;
-            case ItemType.HealthPotion: return ItemAssets.Instance.healthPotionSprite;
+            case ItemType.kilic: return ItemAssets.Instance.sword2Sprite;
+            case ItemType.sword3: return ItemAssets.Instance.sword3Sprite;
+            case ItemType.armor: return ItemAssets.Instance.armorSprite;
+            case ItemType.armor2: return ItemAssets.Instance.armor2Sprite;
+            case ItemType.armor3: return ItemAssets.Instance.armor3Sprite;
+            case ItemType.helmet: return ItemAssets.Instance.helmetSprite;
+            case ItemType.helmet2: return ItemAssets.Instance.helmet2Sprite;
+            case ItemType.helmet3: return ItemAssets.Instance.helmet3Sprite;
+            case ItemType.shoes: return ItemAssets.Instance.shoesSprite;
+            case ItemType.shoes2: return ItemAssets.Instance.shoes2Sprite;
+            case ItemType.point: return ItemAssets.Instance.point;
+            case ItemType.HealthPotion: return ItemAssets.Instance.healthPotionSprite; // icon 102
             case ItemType.StaminaPotion: return ItemAssets.Instance.staminaPotionSprite;
-
-
         }
 
     }
@@ -120,21 +151,19 @@ public class Item : MonoBehaviour
                     playerObject.GetComponent<PlayerScript>().currentSTA = playerObject.GetComponent<PlayerScript>().maxSTA;
                 }
                 itemAmountt--;
-            }
-            
+            }            
         }
         if(itemType == ItemType.HealthPotion) {
             Debug.Log("health potion is used!");
             playerObject.GetComponent<PlayerScript>().currentHP += 30;
         }
-        if (itemType == ItemType.sword) {            
+        if (itemType == ItemType.sword || itemType == ItemType.sword2 || itemType == ItemType.sword3) {            
             if(itemWorn == false) {
-                
                 uiequipment.AddItem(FindIteminInventory(gameObject.transform.GetComponent<Item>().itemName));                
                 this.gameObject.transform.parent = hand.transform;
                 this.gameObject.transform.position = hand.transform.position;
-                player.currentSTR += 10;
-                player.maxSTR += 10;               
+                player.currentSTR += gameObject.transform.GetComponent<Item>().itemSTR;
+                player.maxSTR += gameObject.transform.GetComponent<Item>().itemSTR;               
                 //Destroy(gameObject);
                 player.GetComponent<PlayerScript>().playerInventory.RemoveItem(gameObject.transform.GetComponent<Item>().itemName);
                 Debug.Log("item silindi!");                
@@ -153,16 +182,81 @@ public class Item : MonoBehaviour
                         break;
                     }
                 }
-                player.currentSTR -= 10;
-                player.maxSTR -= 10;
+                player.currentSTR -= gameObject.transform.GetComponent<Item>().itemSTR;
+                player.maxSTR -= gameObject.transform.GetComponent<Item>().itemSTR;
                 itemWorn = false;
                 Debug.Log("equipment tıklanabiliyor");
             }               
         }
+        if (itemType == ItemType.armor || itemType == ItemType.armor2 || itemType == ItemType.armor3) {
+            if (itemWorn == false) {
+                uiequipment.AddItem(FindIteminInventory(gameObject.transform.GetComponent<Item>().itemName));
+                this.gameObject.transform.parent = chest.transform;
+                this.gameObject.transform.position = chest.transform.position;
+                player.currentSTR += gameObject.transform.GetComponent<Item>().itemSTR;
+                player.maxSTR += gameObject.transform.GetComponent<Item>().itemSTR;
+                //Destroy(gameObject);
+                player.GetComponent<PlayerScript>().playerInventory.RemoveItem(gameObject.transform.GetComponent<Item>().itemName);
+                Debug.Log("item silindi!");
+                itemWorn = true;
+            }
+            else if (itemWorn == true) {
+                inventory.AddItem(FindIteminEquipment(gameObject.transform.GetComponent<Item>().itemName));
+                uiequipment.RemoveItem("Sword");
+
+                player.GetComponent<PlayerScript>().playerInventory.RemoveItem(gameObject.transform.GetComponent<Item>().itemName);
+                // this.gameObject.transform.parent = slot1.transform;
+                // this.gameObject.transform.position = slot1.transform.position;
+                for (int i = 0; i < slots.Count; i++) {
+                    if (slots[i].transform.childCount == 0) {
+                        this.gameObject.transform.parent = slots[i].transform;
+                        this.gameObject.transform.position = slots[i].transform.position;
+                        break;
+                    }
+                }
+                player.currentSTR -= gameObject.transform.GetComponent<Item>().itemSTR;
+                player.maxSTR -= gameObject.transform.GetComponent<Item>().itemSTR;
+                itemWorn = false;
+                Debug.Log("equipment tıklanabiliyor");
+            }
+        }
+        if (itemType == ItemType.shoes || itemType == ItemType.shoes2) {
+            if (itemWorn == false) {
+                uiequipment.AddItem(FindIteminInventory(gameObject.transform.GetComponent<Item>().itemName));
+                this.gameObject.transform.parent = pants.transform;
+                this.gameObject.transform.position = pants.transform.position;
+                player.currentSTR += gameObject.transform.GetComponent<Item>().itemSTR;
+                player.maxSTR += gameObject.transform.GetComponent<Item>().itemSTR;
+                //Destroy(gameObject);
+                player.GetComponent<PlayerScript>().playerInventory.RemoveItem(gameObject.transform.GetComponent<Item>().itemName);
+                Debug.Log("item silindi!");
+                itemWorn = true;
+            }
+            else if (itemWorn == true) {
+                inventory.AddItem(FindIteminEquipment(gameObject.transform.GetComponent<Item>().itemName));
+                uiequipment.RemoveItem("Sword");
+
+                player.GetComponent<PlayerScript>().playerInventory.RemoveItem(gameObject.transform.GetComponent<Item>().itemName);
+                // this.gameObject.transform.parent = slot1.transform;
+                // this.gameObject.transform.position = slot1.transform.position;
+                for (int i = 0; i < slots.Count; i++) {
+                    if (slots[i].transform.childCount == 0) {
+                        this.gameObject.transform.parent = slots[i].transform;
+                        this.gameObject.transform.position = slots[i].transform.position;
+                        break;
+                    }
+                }
+                player.currentSTR -= gameObject.transform.GetComponent<Item>().itemSTR;
+                player.maxSTR -= gameObject.transform.GetComponent<Item>().itemSTR;
+                itemWorn = false;
+                Debug.Log("equipment tıklanabiliyor");
+            }
+        }
+
 
     }
     
-    public void sa() {
+    public void DescOpen() {
         Debug.Log("Item name: "+ this.gameObject.GetComponent<Item>().itemName);
         itemdescname.text = "Name: " + this.gameObject.GetComponent<Item>().itemName;
         itemdescbonus.text = "Bonus: " + this.gameObject.GetComponent<Item>().itemSTR;
@@ -183,7 +277,7 @@ public class Item : MonoBehaviour
         
     }
 
-    public void As () {
+    public void CloseDesc () {
         itemDesc.SetActive(false);
     }
 
@@ -245,7 +339,7 @@ public class Item : MonoBehaviour
 
 
 
-
+        Debug.Log("Item STR: " + gameObject.GetComponent<Item>().itemSTR);
 
 
     }

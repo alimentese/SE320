@@ -158,6 +158,7 @@ GameObject:
   - component: {fileID: 1478149834739830145}
   - component: {fileID: 1478149834739830146}
   - component: {fileID: 1478149834739830147}
+  - component: {fileID: 3214780608883987285}
   m_Layer: 10
   m_Name: MushRoom 1
   m_TagString: enemy
@@ -322,3 +323,15 @@ MonoBehaviour:
   isGrounded: 0
   ontrigger: 0
   TriggerArea: {fileID: 1478149833005737379}
+--- !u!114 &3214780608883987285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478149834739830175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e899314c725b27a4ea11e589d86152ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

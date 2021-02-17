@@ -18,7 +18,7 @@ public class BDamage : MonoBehaviour
         if (col.gameObject.CompareTag("Player")) {
             System.Random random = new System.Random();
             int dex = Playerr.GetComponent<PlayerScript>().maxDEX / 4;
-            int damage = random.Next(1, (Skeleton_Damage.SkeletonDamage - dex));
+            int damage = random.Next(1, (10 - dex));
             Playerr.GetComponent<PlayerScript>().currentHP -= damage;
             Debug.Log("Enemy damage: " + damage);
         } 

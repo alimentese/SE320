@@ -58,11 +58,11 @@ public class attack1 : MonoBehaviour
 
         Debug.Log("Damage: " + damage);
         if(enemy.gameObject.transform.localScale.x == -1) {
-            enemy.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 1800);
+           // enemy.GetComponent<Rigidbody2D>().AddForce(Vector2.right * 1800);
             enemy.GetComponent<Rigidbody2D>().AddForce(transform.up * 65);
         }
         if(enemy.gameObject.transform.localScale.x == 1) {
-            enemy.GetComponent<Rigidbody2D>().AddForce(Vector2.left * 1800);
+            // enemy.GetComponent<Rigidbody2D>().AddForce(Vector2.left * 1800);
             enemy.GetComponent<Rigidbody2D>().AddForce(transform.up * 65);
         }
 

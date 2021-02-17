@@ -149,7 +149,6 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update, initialization, message then methods
     void Start()   {
         itemPrefab = GameObject.FindGameObjectWithTag("itemPrefab");
-        Physics2D.IgnoreCollision(itemPrefab.GetComponent<BoxCollider2D>(), gameObject.GetComponent<EdgeCollider2D>());
         slots = new List<GameObject> {
             slot1,
             slot2,
@@ -164,7 +163,6 @@ public class PlayerScript : MonoBehaviour
             slot11,
             slot12
         };
-
 
         playerInventory.PrintItemCount();
         footsteps = gameObject.AddComponent<AudioSource>();
@@ -460,6 +458,8 @@ public class PlayerScript : MonoBehaviour
                     effector.rotationalOffset = 180f;
                     Debug.Log("rotate 180");
 
+                } else {
+                    effector.rotationalOffset = 0f;
                 }
 
                 //Thread.Sleep(timeDelay * 1000);

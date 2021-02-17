@@ -40,7 +40,11 @@ public class attack1 : MonoBehaviour
     private void Attack1(GameObject enemy) {
         SwingSound.Play();
         System.Random random = new System.Random();
-        int damage = random.Next(1, (int)player.GetComponent<PlayerScript>().currentSTR);
+        int damage = random.Next(1, (int)player.GetComponent<PlayerScript>().maxSTR);
+        int critchance = random.Next(0, 1);
+        if(critchance == 1) {
+            damage += (int)player.GetComponent<PlayerScript>().maxAGI;
+        }
         
         if(enemy.gameObject.name == "Slime") {
             enemy.GetComponent<Enemy>().health -= damage;

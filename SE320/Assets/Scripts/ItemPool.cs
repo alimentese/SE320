@@ -84,21 +84,24 @@ public class ItemPool : MonoBehaviour
             itemAmountt = 1,
             itemName = "armor",
             itemWorn = false,
-            itemSTR = 10,
+            itemDEX = 7,
+            itemAGI = 10
         });
         itempool.AddItem(new Item {
             itemType = Item.ItemType.armor2,
             itemAmountt = 1,
             itemName = "armor2",
             itemWorn = false,
-            itemSTR = 10,
+            itemDEX = 10,
+            itemAGI = 4
         });
         itempool.AddItem(new Item {
             itemType = Item.ItemType.armor3,
             itemAmountt = 1,
             itemName = "armor3",
             itemWorn = false,
-            itemSTR = 10,
+            itemDEX = 15,
+            itemAGI = 1
         });
 
 
@@ -107,21 +110,24 @@ public class ItemPool : MonoBehaviour
             itemAmountt = 1,
             itemName = "helmet",
             itemWorn = false,
-            itemSTR = 10,
+            itemDEX = 4,
+            itemAGI = 3
         });
         itempool.AddItem(new Item {
             itemType = Item.ItemType.helmet2,
             itemAmountt = 1,
             itemName = "helmet2",
             itemWorn = false,
-            itemSTR = 10,
+            itemDEX = 6,
+            itemAGI = 2
         });
         itempool.AddItem(new Item {
             itemType = Item.ItemType.helmet3,
             itemAmountt = 1,
             itemName = "helmet3",
             itemWorn = false,
-            itemSTR = 10,
+            itemDEX = 8,
+            itemAGI = 1
         });
 
 
@@ -130,14 +136,16 @@ public class ItemPool : MonoBehaviour
             itemAmountt = 1,
             itemName = "shoes",
             itemWorn = false,
-            itemSTR = 10,
+            itemDEX = 2,
+            itemAGI = 5
         });
         itempool.AddItem(new Item {
             itemType = Item.ItemType.shoes2,
             itemAmountt = 1,
             itemName = "shoes2",
             itemWorn = false,
-            itemSTR = 10,
+            itemDEX = 3,
+            itemAGI = 6
         });
 
 

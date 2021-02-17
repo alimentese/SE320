@@ -16,7 +16,7 @@ public class Item : MonoBehaviour
         itemName = name;
         itemAmountt = amount;
         itemSTR = str;
-        boxcollider = GetComponent<BoxCollider2D>();
+        //boxcollider = GetComponent<BoxCollider2D>();
     }
 
     public Item() {
@@ -195,6 +195,18 @@ public class Item : MonoBehaviour
                 this.gameObject.transform.position = chest.transform.position;
                 player.currentSTR += gameObject.transform.GetComponent<Item>().itemSTR;
                 player.maxSTR += gameObject.transform.GetComponent<Item>().itemSTR;
+
+                player.currentDEX += gameObject.transform.GetComponent<Item>().itemDEX;
+                player.maxDEX += gameObject.transform.GetComponent<Item>().itemDEX;
+
+                player.currentAGI += gameObject.transform.GetComponent<Item>().itemAGI;
+                player.maxAGI += gameObject.transform.GetComponent<Item>().itemAGI;
+
+                player.currentHP += gameObject.transform.GetComponent<Item>().itemHP;
+                player.maxHP += gameObject.transform.GetComponent<Item>().itemHP;
+
+                player.currentSTA += gameObject.transform.GetComponent<Item>().itemSTA;
+                player.currentSTA += gameObject.transform.GetComponent<Item>().itemSTA;
                 //Destroy(gameObject);
                 player.GetComponent<PlayerScript>().playerInventory.RemoveItem(gameObject.transform.GetComponent<Item>().itemName);
                 Debug.Log("item silindi!");
@@ -216,6 +228,18 @@ public class Item : MonoBehaviour
                 }
                 player.currentSTR -= gameObject.transform.GetComponent<Item>().itemSTR;
                 player.maxSTR -= gameObject.transform.GetComponent<Item>().itemSTR;
+
+                player.currentDEX -= gameObject.transform.GetComponent<Item>().itemDEX;
+                player.maxDEX -= gameObject.transform.GetComponent<Item>().itemDEX;
+
+                player.currentAGI -= gameObject.transform.GetComponent<Item>().itemAGI;
+                player.maxAGI -= gameObject.transform.GetComponent<Item>().itemAGI;
+
+                player.currentHP -= gameObject.transform.GetComponent<Item>().itemHP;
+                player.maxHP -= gameObject.transform.GetComponent<Item>().itemHP;
+
+                player.currentSTA -= gameObject.transform.GetComponent<Item>().itemSTA;
+                player.currentSTA -= gameObject.transform.GetComponent<Item>().itemSTA;
                 itemWorn = false;
                 Debug.Log("equipment tıklanabiliyor");
             }
@@ -227,6 +251,18 @@ public class Item : MonoBehaviour
                 this.gameObject.transform.position = pants.transform.position;
                 player.currentSTR += gameObject.transform.GetComponent<Item>().itemSTR;
                 player.maxSTR += gameObject.transform.GetComponent<Item>().itemSTR;
+
+                player.currentDEX += gameObject.transform.GetComponent<Item>().itemDEX;
+                player.maxDEX += gameObject.transform.GetComponent<Item>().itemDEX;
+
+                player.currentAGI += gameObject.transform.GetComponent<Item>().itemAGI;
+                player.maxAGI += gameObject.transform.GetComponent<Item>().itemAGI;
+
+                player.currentHP += gameObject.transform.GetComponent<Item>().itemHP;
+                player.maxHP += gameObject.transform.GetComponent<Item>().itemHP;
+
+                player.currentSTA += gameObject.transform.GetComponent<Item>().itemSTA;
+                player.currentSTA += gameObject.transform.GetComponent<Item>().itemSTA;
                 //Destroy(gameObject);
                 player.GetComponent<PlayerScript>().playerInventory.RemoveItem(gameObject.transform.GetComponent<Item>().itemName);
                 Debug.Log("item silindi!");
@@ -248,6 +284,74 @@ public class Item : MonoBehaviour
                 }
                 player.currentSTR -= gameObject.transform.GetComponent<Item>().itemSTR;
                 player.maxSTR -= gameObject.transform.GetComponent<Item>().itemSTR;
+
+                player.currentDEX -= gameObject.transform.GetComponent<Item>().itemDEX;
+                player.maxDEX -= gameObject.transform.GetComponent<Item>().itemDEX;
+
+                player.currentAGI -= gameObject.transform.GetComponent<Item>().itemAGI;
+                player.maxAGI -= gameObject.transform.GetComponent<Item>().itemAGI;
+
+                player.currentHP -= gameObject.transform.GetComponent<Item>().itemHP;
+                player.maxHP -= gameObject.transform.GetComponent<Item>().itemHP;
+
+                player.currentSTA -= gameObject.transform.GetComponent<Item>().itemSTA;
+                player.currentSTA -= gameObject.transform.GetComponent<Item>().itemSTA;
+                itemWorn = false;
+                Debug.Log("equipment tıklanabiliyor");
+            }
+        }
+        if (itemType == ItemType.helmet || itemType == ItemType.helmet2 || itemType == ItemType.helmet3) {
+            if (itemWorn == false) {
+                uiequipment.AddItem(FindIteminInventory(gameObject.transform.GetComponent<Item>().itemName));
+                this.gameObject.transform.parent = head.transform;
+                this.gameObject.transform.position = head.transform.position;
+                player.currentSTR += gameObject.transform.GetComponent<Item>().itemSTR;
+                player.maxSTR += gameObject.transform.GetComponent<Item>().itemSTR;
+
+                player.currentDEX += gameObject.transform.GetComponent<Item>().itemDEX;
+                player.maxDEX += gameObject.transform.GetComponent<Item>().itemDEX;
+
+                player.currentAGI += gameObject.transform.GetComponent<Item>().itemAGI;
+                player.maxAGI += gameObject.transform.GetComponent<Item>().itemAGI;
+
+                player.currentHP += gameObject.transform.GetComponent<Item>().itemHP;
+                player.maxHP += gameObject.transform.GetComponent<Item>().itemHP;
+
+                player.currentSTA += gameObject.transform.GetComponent<Item>().itemSTA;
+                player.currentSTA += gameObject.transform.GetComponent<Item>().itemSTA;
+                //Destroy(gameObject);
+                player.GetComponent<PlayerScript>().playerInventory.RemoveItem(gameObject.transform.GetComponent<Item>().itemName);
+                Debug.Log("item silindi!");
+                itemWorn = true;
+            }
+            else if (itemWorn == true) {
+                inventory.AddItem(FindIteminEquipment(gameObject.transform.GetComponent<Item>().itemName));
+                uiequipment.RemoveItem("Sword");
+
+                player.GetComponent<PlayerScript>().playerInventory.RemoveItem(gameObject.transform.GetComponent<Item>().itemName);
+                // this.gameObject.transform.parent = slot1.transform;
+                // this.gameObject.transform.position = slot1.transform.position;
+                for (int i = 0; i < slots.Count; i++) {
+                    if (slots[i].transform.childCount == 0) {
+                        this.gameObject.transform.parent = slots[i].transform;
+                        this.gameObject.transform.position = slots[i].transform.position;
+                        break;
+                    }
+                }
+                player.currentSTR -= gameObject.transform.GetComponent<Item>().itemSTR;
+                player.maxSTR -= gameObject.transform.GetComponent<Item>().itemSTR;
+
+                player.currentDEX -= gameObject.transform.GetComponent<Item>().itemDEX;
+                player.maxDEX -= gameObject.transform.GetComponent<Item>().itemDEX;
+
+                player.currentAGI -= gameObject.transform.GetComponent<Item>().itemAGI;
+                player.maxAGI -= gameObject.transform.GetComponent<Item>().itemAGI;
+
+                player.currentHP -= gameObject.transform.GetComponent<Item>().itemHP;
+                player.maxHP -= gameObject.transform.GetComponent<Item>().itemHP;
+
+                player.currentSTA -= gameObject.transform.GetComponent<Item>().itemSTA;
+                player.maxSTA -= gameObject.transform.GetComponent<Item>().itemSTA;
                 itemWorn = false;
                 Debug.Log("equipment tıklanabiliyor");
             }
@@ -362,7 +466,5 @@ public class Item : MonoBehaviour
         //itemPopupObject.SetActive(false);
 
     }
-
-
 
 }

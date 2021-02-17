@@ -88,6 +88,7 @@ public class PlayerScript : MonoBehaviour
     private float lastTapTime = 0;
 
     [SerializeField] GameObject UI;
+    [SerializeField] GameObject inventoryUI;
     [SerializeField] Inventory UIinventory;
     [SerializeField] Equipment UIEquipment;
     public Inventory playerInventory;
@@ -102,6 +103,8 @@ public class PlayerScript : MonoBehaviour
     public GameObject[] platforms;
     public PlatformEffector2D effector;
     public float health = 100f;
+
+    private GameObject itemPrefab;
     
  
     // State
@@ -136,15 +139,17 @@ public class PlayerScript : MonoBehaviour
         UIEquipment.setEquipment(playerEquipment);
 
         playerInventory = new Inventory();
-
         
+
+
 
     }
 
 
     // Start is called before the first frame update, initialization, message then methods
     void Start()   {
-
+        itemPrefab = GameObject.FindGameObjectWithTag("itemPrefab");
+        Physics2D.IgnoreCollision(itemPrefab.GetComponent<BoxCollider2D>(), gameObject.GetComponent<EdgeCollider2D>());
         slots = new List<GameObject> {
             slot1,
             slot2,
@@ -153,7 +158,11 @@ public class PlayerScript : MonoBehaviour
             slot5,
             slot6,
             slot7,
-            slot8
+            slot8,
+            slot9,
+            slot10,
+            slot11,
+            slot12
         };
 
 
@@ -526,7 +535,7 @@ public class PlayerScript : MonoBehaviour
     }
     
     
-    private void OnTriggerEnter2D(Collider2D collision) {
+    private void OnTriggerEnter2D(Collider2D collision) {        
         if (collision.gameObject.tag == "itemPrefab") {
             for (int i = 0; i < slots.Count; i++) {
                 if (slots[i].transform.childCount == 0) {
@@ -548,7 +557,7 @@ public class PlayerScript : MonoBehaviour
         }
 
     }
-    
+
 }
     
 

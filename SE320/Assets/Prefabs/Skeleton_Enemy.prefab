@@ -226,7 +226,7 @@ MonoBehaviour:
   SkeletonDamage: 10
   groundMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 512
   isGrounded: 0
   ontrigger: 0
   TriggerArea: {fileID: 5141016803435489736}

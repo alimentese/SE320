@@ -40,6 +40,11 @@ public class ItemPool : MonoBehaviour
                 newItem.GetComponent<Item>().itemName = item.itemName;
                 newItem.GetComponent<Item>().itemAmountt = item.itemAmountt;
                 newItem.GetComponent<Item>().itemSTR = item.itemSTR;
+                newItem.GetComponent<Item>().itemDEX = item.itemDEX;
+                newItem.GetComponent<Item>().itemAGI = item.itemAGI;
+                newItem.GetComponent<Item>().itemINT = item.itemINT;
+                newItem.GetComponent<Item>().itemHP = item.itemHP;
+                newItem.GetComponent<Item>().itemSTA = item.itemSTA;
                 newItem.transform.parent = itemPoolUi.transform;
                 newItem.gameObject.name = item.itemName;
                 newItem.SetActive(false);
@@ -167,26 +172,6 @@ public class ItemPool : MonoBehaviour
             itemAmountt = 10,
             itemName = "stamina potion"
         });
-
-        spawnItem("sword");
-        spawnItem("sword2");
-        spawnItem("sword3");
-        spawnItem("armor");
-        spawnItem("armor2");
-        spawnItem("armor3");
-        spawnItem("helmet");
-        spawnItem("helmet2");
-        spawnItem("helmet3");
-        spawnItem("shoes");
-        spawnItem("shoes2");
-        spawnItem("point");
-        spawnItem("shoes");
-        spawnItem("stamina potion");
-        spawnItem("health potion");
-
-
-
-
     }
     /*
      *  ITEM LIST

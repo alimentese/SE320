@@ -29,10 +29,9 @@ public class InventoryUI : MonoBehaviour
 
     // Start is called before the first frame update
     private void Awake() {
-        RefreshInventory();
+
     }
     void Start() {
-        RefreshInventory();
         slots = new List<GameObject> {
             slot1,
             slot2,
@@ -41,7 +40,11 @@ public class InventoryUI : MonoBehaviour
             slot5,
             slot6,
             slot7,
-            slot8
+            slot8,
+            slot9,
+            slot10,
+            slot11,
+            slot12
         };
     }
 

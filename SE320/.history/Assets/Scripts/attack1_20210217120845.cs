@@ -52,7 +52,7 @@ public class attack1 : MonoBehaviour
         if (enemy.gameObject.name == "Skeleton_Enemy") {
             enemy.GetComponent<BEnemy>().SkeletonHealth -= damage;
         }
-        if (enemy.gameObject.name == "MushRoom") {
+        if (enemy.gameObject.name == "Mushroom") {
             enemy.GetComponent<BEnemy>().SkeletonHealth -= damage;
         }
 
